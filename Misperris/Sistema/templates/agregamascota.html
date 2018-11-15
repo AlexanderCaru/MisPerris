@@ -1,0 +1,24 @@
+{% extends 'maqueta.html' %}
+
+{% block contenido %}
+
+<section class="main">
+		<div class="formulario">
+    <form action="" enctype="multipart/form-data" method="POST">
+    	<table>
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+      <tr>
+        <td>{{ field.label_tag }}</td>
+        <td>
+          {{ field }}
+        </td>
+      </tr>
+    {% endfor %}
+    </table>
+        <input type="submit">
+    </form>
+</div>
+</section>
+
+{% endblock %}

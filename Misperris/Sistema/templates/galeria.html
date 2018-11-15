@@ -1,0 +1,77 @@
+{% extends 'maqueta.html' %}
+{% load staticfiles %}
+
+{% block contenidohead %}
+<style type="text/css">
+.normal{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width:100%;
+ }
+.main .imagen{
+    display: flex;
+ }
+.main .imagen:hover img{
+    opacity: 0.95;
+    -webkit-transform:scale(1.10);
+    -moz-transform:scale(1.10);
+    -ms-transform:scale(1.10);
+    -o-transform:scale(1.10);
+    transform:scale(1.10);
+    transition: all 0.5s;
+    z-index: 100;
+ }
+</style>
+{% endblock %}
+
+{% block contenido %}
+<!--MOSTRAR RESCATADOS-->
+    <section class="main">
+        <h1>Rescatados</h1>
+        <div class="normal">
+        {% for m in mascotas %}
+            {% if m.estadoMascota == "Rescatado" %}
+                <div class="imagen">
+                    <img src="{{m.foto|cut:'Sistema/'}}" alt="" style="width:400px; height:300px;">
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <br>
+    </section>
+<hr>
+<!--MOSTRAR DISPONIBLES-->
+<section class="main">
+        <h1>Disponibles</h1>
+        <div class="normal">
+        {% for m in mascotas %}
+            {% if m.estadoMascota == "Disponible" %}
+                <div class="imagen">
+                    <img src="{{m.foto|cut:'Sistema/'}}" alt="" style="width:400px; height:300px;">
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <br>
+    </section>
+<hr>
+<!--MOSTRAR ADOPTADOS-->
+<section class="main">
+        <h1>Adoptados</h1>
+        <div class="normal">
+        {% for m in mascotas %}
+            {% if m.estadoMascota == "Adoptado" %}
+                <div class="imagen">
+                    <img src="{{m.foto|cut:'Sistema/'}}" alt="" style="width:400px; height:300px;">
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <br>
+    </section>
+<hr>
+
+{% endblock %}
+
+

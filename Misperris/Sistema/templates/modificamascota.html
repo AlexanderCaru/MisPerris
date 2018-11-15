@@ -1,0 +1,26 @@
+{% extends 'maqueta.html' %}
+
+{% block contenido %}
+
+<section class="main">
+	<div class="formulario">
+    <form action="{%url 'listarmascota' %}" enctype="multipart/form-data" method="POST">
+        <table>
+    {% csrf_token %}
+    
+    {% for field in form.visible_fields %}
+      <tr>
+        <td>{{ field.label_tag }}</td>
+        <td>
+          {{ field }}
+        </td>
+      </tr>
+    {% endfor %}
+    </table>
+        <input type="hidden" name="id" value="{{id}}" id="id" >
+        <input type="submit" value="modifcar" name="modificar">
+    </form>
+</div>
+</section>
+
+{% endblock %}

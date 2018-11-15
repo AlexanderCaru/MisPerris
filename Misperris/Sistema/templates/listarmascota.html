@@ -1,0 +1,59 @@
+{% extends 'maqueta.html' %}
+{% load staticfiles %}
+{% block contenido %}
+{% if mascotacreada %}
+        <script>
+            window.alert("Mascota creada correctamente");
+        </script>
+        <meta http-equiv="REFRESH" content="0;url=http://127.0.0.1:8000/listarmascota">
+    {% endif %}
+{% if mascotamodificada %}
+        <script>
+            window.alert("Mascota modificada correctamente");
+        </script>
+{% endif %}
+{% if mascotaeliminada %}
+        <script>
+            window.alert("Mascota eliminada correctamente");
+        </script>
+    {% endif %}
+    <section class="main">
+        {% for m in mascotas %}
+            <div>
+                <div style="display: inline-block;">
+                    <img src="{{m.foto|cut:'Sistema/'}}" alt="" style="width:400px; height:300px;">
+                </div>
+                <div style="display: inline-block;">
+                    <h2>CODIGO: {{m.codigoMascota}}</h2><br>
+                    <h2>NOMBRE: {{m.nombreMascota}}</h2><br>
+                    <h2>RAZA: {{m.raza}}</h2><br>
+                    <h2>DESCRIPCIÓN: {{m.descripcion}}</h2><br>
+                    <h2>ESTADO: {{m.estadoMascota}}</h2><br>
+                    <h2>DUEÑO: {{m.Persona}}</h2><br>
+                </div>
+                {% if request.user.is_staff %}
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="hidden" name="codigo" value="{{m.codigoMascota}}">
+                        <input type="submit" name="btnBorra" value="Eliminar mascota">
+                    </form>
+                    <br>   
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="hidden" name="codigo" value="{{m.codigoMascota}}">
+                        <input type="submit" name="btnModifica" value="Modificar mascota">
+                    </form>
+                    <br>
+
+                {% endif %}
+            </div>
+            <hr>
+        {% endfor %}
+    </section>
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'maqueta.html' %}
+{% load staticfiles %}
+{% block contenido %}
+	<section class="main">
+        <div class="formulario">
+            <table>
+    {% if request.user.is_superuser %}
+        
+        <tr><td><h1>Usuario admin</h1></tr></td>
+        
+        <tr>
+            <td><a href="{% url 'agregamascota' %}">Agregar una mascota</a><br></td>
+        </tr>
+        <tr><td><a href="{% url 'listarmascota' %}">Listar mascotas</a></td></tr>
+        
+    {% else %}
+        <tr><td><h1>Usuario normal</h1></td></tr>
+        <tr><td><a href="{% url 'listarmascota' %}">Listar mascotas</a></td></tr>
+    {% endif %}
+    </table>
+    </div>
+    </section>
+{% endblock %}

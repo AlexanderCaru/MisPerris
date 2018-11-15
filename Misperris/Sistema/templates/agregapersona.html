@@ -1,0 +1,78 @@
+{% extends 'maqueta.html' %}
+{% load staticfiles %}
+
+{% block contenidohead %}<!-- Para agregar contenido en el <head> -->
+
+{% endblock %}
+
+
+
+{% block contenido %}
+{% if c %}
+    <script>
+        window.alert("Este usuario ya existe");
+    </script>
+{% endif %}
+
+<section class="main">
+  <div class="formulario">
+  
+  <table>
+  <form id="registroPersona" action="#" method="POST"> 
+      {% csrf_token %}
+  <tr>
+      <td>Correo Electrónico: </td><td><input type="email" name="email" id="email" required > </td>
+  </tr>
+  <tr>
+      <td> Run: </td><td><input type="text" name="rut" id="rut" required> </td>
+  </tr>
+  <tr>
+      <td> Nombre Completo: </td><td> <input type="text" name="nombre" id="nombre" required></td>
+  </tr>
+  <tr>
+      <td>Fecha de Nacimiento: </td><td><input type="date" name="fec_nac" id="fec_nac" required> </td>
+  </tr>
+  <tr>
+      <td> Teléfono:</td><td><input type="number" name="telefono" id="telefono"> </td>
+  </tr>
+  <tr>
+      <td>Región: </td><td>		 <select name="region" id="region" >
+      <option>--Región--</option>
+  <option>Arica y Parinacota</option>
+  <option>Coquimbo</option>
+  <option>Metropolitana</option>
+  </select> </td>
+  </tr>
+  <tr>
+      <td> Ciudad:</td><td>		 <select name="ciudad" id="ciudad" >
+      <option>--Ciudad--</option>
+  </select>
+   </td>
+  </tr>
+  
+  <tr>
+      <td> Tipo de Vivienda:</td><td>		 <select name="tipo_viv" id="tipo_viv" required>
+      <option>--Tipo--</option>
+      <option>Casa con patio grande</option>
+      <option>Casa con patio pequeño</option>
+      <option>Casa sin patio</option>
+      <option>Departamento</option>
+  </select>
+   </td>
+  </tr>
+  
+  <tr>
+      <td></td><td><input type="submit" name="enviar" class="enviar" value="Enviar"></td>
+  </tr>
+  
+  </form>
+  </table>	
+  
+  
+  </div>
+
+  </section>
+
+<script  src="{%static 'js/validacion.js'%}"></script>
+
+{% endblock %}
