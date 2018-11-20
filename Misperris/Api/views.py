@@ -4,11 +4,20 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from Sistema.models import *
 from .serializers import MascotaSerializer
-# Create your views here.
+#Create your views here.
 
-# class MascotaAgregar(APIView):
-#     def post(self,request):
-#             return render(request, "listarmascota.html", {'mascotas':mascotas, 'mascotacreada':True})
-#         else:
-#             form = UploadImageForm()
-#         return render(request, "agregamascota.html", {'mascotas':mascotas, 'form':form})
+class UsuarioAgregar(APIView):
+    def post(self,request):
+        email = request.POST.get('email')
+        rut = request.POST.get('rut')
+        nombre = request.POST.get('nombre')
+        contra = request.POST.get('contra')
+        contra2 = request.POST.get('contra2')
+        fec_nac = request.POST.get('fec_nac')
+        telefono = request.POST.get('telefono')
+        region = request.POST.get('region')
+        ciudad = request.POST.get('ciudad')
+        tipo_viv = request.POST.get('tipo_viv')
+        user = User.objects.create_user(username = rut, password= contra)
+        user.save()
+        return render(request, "index.html", {'creado':'si'})
